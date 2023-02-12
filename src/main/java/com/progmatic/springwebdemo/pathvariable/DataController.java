@@ -1,6 +1,7 @@
 package com.progmatic.springwebdemo.pathvariable;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,18 +26,34 @@ public class DataController {
         return new Book("Kázmér receptjei", isbn);
     }
 
-    @RequestMapping(
+//    @RequestMapping(
+//            path = "/xml/book/{isbn}",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_XML_VALUE
+//    )
+//    @ResponseBody
+//    public String getXmlBook(@PathVariable("isbn") String isbn) {
+//        return String.format("""
+//<book><name>Kázmér receptjei</name><isbn>%s</isbn></book>
+//""",
+//                isbn
+//        );
+//    }
+
+    @GetMapping(
             path = "/xml/book/{isbn}",
-            method = RequestMethod.GET,
             produces = MediaType.APPLICATION_XML_VALUE
     )
     @ResponseBody
-    public String getXmlBook(@PathVariable("isbn") String isbn) {
-        return String.format("""
-<book><name>Kázmér receptjei</name><isbn>%s</isbn></book>
-""",
-                isbn
-        );
+    public ResponseEntity<String> getXmlBook(@PathVariable("isbn") String isbn) {
+//        return ResponseEntity.ok(
+//            String.format("""
+//<book><name>Kázmér receptjei</name><isbn>%s</isbn></book>
+//""",
+//                isbn
+//            )
+//        );
+        return ResponseEntity.notFound().build();
     }
 
     @RequestMapping(path = "/bookByParam", method = RequestMethod.GET)
