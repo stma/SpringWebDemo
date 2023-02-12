@@ -1,0 +1,6 @@
+#server:
+#  port: 12345
+
+hello:
+  name: Matyi
+  number: 7
