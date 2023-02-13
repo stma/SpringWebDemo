@@ -34,7 +34,7 @@ public class DataController {
 //    @ResponseBody
 //    public String getXmlBook(@PathVariable("isbn") String isbn) {
 //        return String.format("""
-//<book><name>Kázmér receptjei</name><isbn>%s</isbn></book>
+//<book><title>Kázmér receptjei</title><isbn>%s</isbn></book>
 //""",
 //                isbn
 //        );
@@ -48,7 +48,7 @@ public class DataController {
     public ResponseEntity<String> getXmlBook(@PathVariable("isbn") String isbn) {
 //        return ResponseEntity.ok(
 //            String.format("""
-//<book><name>Kázmér receptjei</name><isbn>%s</isbn></book>
+//<book><title>Kázmér receptjei</title><isbn>%s</isbn></book>
 //""",
 //                isbn
 //            )

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Könyv létrehozása, módosítása</title>
+</head>
+<body>
+    <h1>Új könyv</h1>
+
+    <form data-th-action="@{/mybook2}" data-th-object="${book}" method="post">
+        <input name="title" data-th-field="*{title}" type="text">
+        <input name="title" data-th-field="*{isbn}" type="text">
+        <input type="submit" value="Ment">
+    </form>
+</body>
+</html>

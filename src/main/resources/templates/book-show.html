@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Könyv mutat</title>
+</head>
+<body>
+    <h1>Könyv</h1>
+    <p>
+        <b data-th-unless="${book} == null">[[${book.title}]] ([[${book.isbn}]])</b>
+        <b data-th-if="${book} == null">Nincs ilyen könyv</b>
+    </p>
+</body>
+</html>
