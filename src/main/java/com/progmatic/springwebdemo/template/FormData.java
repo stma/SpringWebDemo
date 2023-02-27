@@ -5,9 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/mybook")
 public class FormData {
+
+    List<Book> books = new LinkedList<>();
 
     @GetMapping(path = {"", "/{id}"})
     public String getBook(

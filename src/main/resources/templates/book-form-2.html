@@ -9,13 +9,26 @@
 
     <form
         style="display: flex; flex-direction: column; max-width: 500px"
-        data-th-action="@{/mybook2}" data-th-object="${book}" enctype="multipart/form-data" method="post">
+        data-th-action="@{/mybook2}" data-th-object="${book}" enctype="multipart/form-data" method="post"
+    >
         <label for="bookTitle">Title</label>
         <input id="bookTitle" name="title" data-th-field="*{title}" type="text">
+        <p
+            style="color: red;"
+            data-th-if ="${#fields.hasErrors('title')}"
+            data-th-errors ="*{title}"
+        >Name Error </p>
         <label for="bookId">ISBN</label>
         <input id="bookId" name="title" data-th-field="*{isbn}" type="text">
+        <p
+            style="color: red;"
+            data-th-if ="${#fields.hasErrors('isbn')}"
+            data-th-errors ="*{isbn}"
+        >Isbn Error </p>
+
         <label for="bookCover">Borito art</label>
         <input id="bookCover" name="cover" data-th-field="*{cover}" type="file">
+
         <input type="submit" value="Ment">
     </form>
 </body>

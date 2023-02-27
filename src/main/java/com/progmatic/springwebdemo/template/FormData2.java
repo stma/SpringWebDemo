@@ -1,6 +1,5 @@
 package com.progmatic.springwebdemo.template;
 
-import com.progmatic.springwebdemo.pathvariable.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.LinkedList;
@@ -41,8 +39,9 @@ public class FormData2 {
                 break;
             }
         }
+        System.out.println(b.getCoverPath());
         model.addAttribute("book", b);
-        return "book-show";
+        return "book-show2";
     }
 
     @GetMapping("/new")
@@ -53,7 +52,7 @@ public class FormData2 {
 
     @PostMapping
     public String setBook(
-            @ModelAttribute
+            @ModelAttribute("book")
             @Validated
             Book2 book,
             BindingResult formCheck
@@ -62,20 +61,21 @@ public class FormData2 {
             return "book-form-2";
         }
 
-        String path = FormData2.PATH + book.getCover().getOriginalFilename();
-
         Book2Show bs = new Book2Show();
         bs.setIsbn(book.getIsbn());
         bs.setTitle(book.getTitle());
-        bs.setCoverPath(book.getCover().getOriginalFilename());
-        books2.add(bs);
+        if (book.getCover() != null) {
+            String path = FormData2.PATH + book.getCover().getOriginalFilename();
+            bs.setCoverPath(book.getCover().getOriginalFilename());
 
-        System.out.println(book.getCover().getOriginalFilename());
-        Files.copy(
-                book.getCover().getInputStream(),
-                Paths.get(path),
-                StandardCopyOption.REPLACE_EXISTING
-        );
+            System.out.println(book.getCover().getOriginalFilename());
+            Files.copy(
+                    book.getCover().getInputStream(),
+                    Paths.get(path),
+                    StandardCopyOption.REPLACE_EXISTING
+            );
+        }
+        books2.add(bs);
 
         return "redirect:/mybook2/" + book.getIsbn();
     }
