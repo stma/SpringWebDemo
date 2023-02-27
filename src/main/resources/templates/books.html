@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Könyvek</title>
+</head>
+<body>
+    <h1>Könyvek</h1>
+    <ul data-th-unless="${#lists.isEmpty(books)}">
+        <li data-th-each="book: ${books}">
+            <p>
+                <b>[[${book.title}]] ([[${book.isbn}]])</b>
+            </p>
+        </li>
+    </ul>
+    <b data-th-if="${#lists.isEmpty(books)}">Nincsenek könyvek</b>
+</body>
+</html>

@@ -9,6 +9,12 @@
     <p>
         <b data-th-unless="${book} == null">[[${book.title}]] ([[${book.isbn}]])</b>
         <b data-th-if="${book} == null">Nincs ilyen könyv</b>
+        <img data-th-src="${'/covers/' + book.coverPath}" data-th-if="${book.coverPath}" />
     </p>
 </body>
 </html>
+
+<!--<td th:switch="${student.gender}">-->
+<!--    <span th:case="'M'" th:text="Male" />-->
+<!--    <span th:case="'F'" th:text="Female" />-->
+<!--</td>-->

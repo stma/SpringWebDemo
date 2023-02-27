@@ -7,10 +7,28 @@
 <body>
     <h1>Új könyv</h1>
 
-    <form data-th-action="@{/mybook2}" data-th-object="${book}" method="post">
-        <input name="title" data-th-field="*{title}" type="text">
-        <input name="title" data-th-field="*{isbn}" type="text">
+    <form
+        style="display: flex; flex-direction: column; max-width: 500px"
+        data-th-action="@{/mybook2}" data-th-object="${book}" enctype="multipart/form-data" method="post">
+        <label for="bookTitle">Title</label>
+        <input id="bookTitle" name="title" data-th-field="*{title}" type="text">
+        <label for="bookId">ISBN</label>
+        <input id="bookId" name="title" data-th-field="*{isbn}" type="text">
+        <label for="bookCover">Borito art</label>
+        <input id="bookCover" name="cover" data-th-field="*{cover}" type="file">
         <input type="submit" value="Ment">
     </form>
 </body>
 </html>
+
+<!--*, all, global-->
+<!--<ul>-->
+<!--    <li th:each="err : ${#fields.errors('id')}" th:text="${err}" />-->
+<!--    <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />-->
+<!--</ul>-->
+
+<!--<ul>-->
+<!--    <li th:errors="*{id}" />-->
+<!--    <li th:errors="*{name}" />-->
+<!--</ul>-->
+
